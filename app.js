@@ -13,3 +13,6 @@ app.listen(port, function (err) {
 app.get('/', function (request, response) {
     response.send('Hello World');
 });
+app.get('/books', function (request, response) {
+    response.send('Hello Books');
+});
