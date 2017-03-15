@@ -11,6 +11,7 @@ app.listen(port, function (err) {
 });
 
 app.use(express.static('public'));
+app.use(express.static('src/views'));
 
 app.get('/', function (request, response) {
     response.send('Hello World');
