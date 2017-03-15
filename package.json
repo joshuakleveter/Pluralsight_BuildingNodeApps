@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/joshuakleveter/Pluralsight_BuildingNodeApps/issues"
   },
-  "homepage": "https://github.com/joshuakleveter/Pluralsight_BuildingNodeApps#readme"
+  "homepage": "https://github.com/joshuakleveter/Pluralsight_BuildingNodeApps#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }
