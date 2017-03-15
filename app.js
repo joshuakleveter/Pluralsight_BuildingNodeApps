@@ -10,6 +10,8 @@ app.listen(port, function (err) {
     console.log(`Running server on port ${port}`);
 });
 
+app.use(express.static('public'));
+
 app.get('/', function (request, response) {
     response.send('Hello World');
 });
