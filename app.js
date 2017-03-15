@@ -9,3 +9,7 @@ var app = express();
 app.listen(port, function (err) {
     console.log(`Running server on port ${port}`);
 });
+
+app.get('/', function (request, response) {
+    response.send('Hello World');
+});
