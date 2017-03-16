@@ -3,8 +3,8 @@ var express = require('express');
 
 // Set variables
 var bookRouter = express.Router();
-
-var books = [
+var router = function (nav) {
+    var books = [
     {
         title: 'You Don\'t Know JavaScript',
         genre: 'Technical',
@@ -29,42 +29,27 @@ var books = [
         author: 'Lorainne Boettner',
         read: true
     }
-];
+    ];
 
-bookRouter.route('/')
-    .get(function (request, response) {
-        response.render('bookListView', {
-            nav: [
-                {
-                    Link: '/Books',
-                    Text: 'Books'
-                },
-                {
-                    Link: '/Authors',
-                    Text: 'Authors'
-                }
-            ],
-            books: books
+    bookRouter.route('/')
+        .get(function (request, response) {
+            response.render('bookListView', {
+                nav: nav,
+                books: books
+            });
         });
-    });
 
-bookRouter.route('/:id')
-    .get(function (request, response) {
-        var id = request.params.id;
-        response.render('bookView', {
-            nav: [
-                {
-                    Link: '/Books',
-                    Text: 'Books'
-                },
-                {
-                    Link: '/Authors',
-                    Text: 'Authors'
-                }
-            ],
-            book: books[id]
+    bookRouter.route('/:id')
+        .get(function (request, response) {
+            var id = request.params.id;
+            response.render('bookView', {
+                nav: nav,
+                book: books[id]
+            });
         });
-    });
+
+    return bookRouter;
+};
 
 // Export Router
-module.exports = bookRouter;
+module.exports = router;
