@@ -5,6 +5,9 @@ var express = require('express');
 var port = process.env.PORT;
 var app = express();
 
+app.set('views', './src/views');
+app.set('view engine', 'ejs');
+
 // App code
 app.listen(port, function (err) {
     console.log(`Running server on port ${port}`);
