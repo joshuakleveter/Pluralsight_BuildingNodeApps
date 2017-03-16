@@ -1,15 +1,26 @@
-// Require modules
-var bookRouter = require('./src/routes/bookRoutes');
-var express    = require('express');
-
 // Set variables
 var port = process.env.PORT;
+var nav = [
+    {
+        Link: '/Books',
+        Text: 'Books'
+    },
+    {
+        Link: '/Authors',
+        Text: 'Authors'
+    }
+];
+
+// Require modules
+var bookRouter = require('./src/routes/bookRoutes')(nav);
+var express    = require('express');
+
+// App code
 var app  = express();
 
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
-// App code
 app.listen(port, function (err) {
     console.log(`Running server on port ${port}`);
 });
@@ -22,16 +33,7 @@ app.use('/Books', bookRouter);
 app.get('/', function (request, response) {
     response.render('index', {
         title: 'Hello from Render',
-        nav: [
-            {
-                Link: '/Books',
-                Text: 'Books'
-            },
-            {
-                Link: '/Authors',
-                Text: 'Authors'
-            }
-        ]
+        nav: nav
     });
 });
 
