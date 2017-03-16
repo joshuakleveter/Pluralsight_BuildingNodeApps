@@ -1,6 +1,6 @@
 // Require Modules
-var gulp = require('gulp');
-var jscs = require('gulp-jscs');
+var gulp   = require('gulp');
+var jscs   = require('gulp-jscs');
 var jshint = require('gulp-jshint');
 
 // Set Variables
