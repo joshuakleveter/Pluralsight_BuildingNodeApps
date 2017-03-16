@@ -33,7 +33,7 @@ var books = [
 
 bookRouter.route('/')
     .get(function (request, response) {
-        response.render('books', {
+        response.render('bookListView', {
             nav: [
                 {
                     Link: '/Books',
@@ -51,7 +51,7 @@ bookRouter.route('/')
 bookRouter.route('/:id')
     .get(function (request, response) {
         var id = request.params.id;
-        response.render('book', {
+        response.render('bookView', {
             nav: [
                 {
                     Link: '/Books',
