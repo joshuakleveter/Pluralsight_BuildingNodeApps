@@ -5,6 +5,8 @@ var express = require('express');
 var port = process.env.PORT;
 var app = express();
 
+var bookRouter = express.Router();
+
 app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
