@@ -19,7 +19,16 @@ app.use(express.static('src/views'));
 app.get('/', function (request, response) {
     response.render('index', {
         title: 'Hello from Render',
-        list: ['a', 'b']
+        nav: [
+            {
+                Link: '/Books',
+                Text: 'Books'
+            },
+            {
+                Link: '/Authors',
+                Text: 'Authors'
+            }
+        ]
     });
 });
 app.get('/books', function (request, response) {
