@@ -19,10 +19,23 @@ gulp.task('inject', function () {
     var wiredepOpts = {
         bowerJson: require('./bower.json'),
         directory: './public/lib',
-        ignorePath: '../../public/'
+        ignorePath: '../../public/',
+        fileTypes: {
+            ejs: {
+                block: /(([ \t]*)<!--\s*bower:*(\S*)\s*-->)(\n|\r|.)*?(<!--\s*endbower\s*-->)/gi,
+                detect: {
+                    js: /<script.*src=['"]([^'"]+)/gi,
+                    css: /<link.*href=['"]([^'"]+)/gi
+                },
+                replace: {
+                    js: '<script src="\/{{filePath}}"></script>',
+                    css: '<link rel="stylesheet" href="\/{{filePath}}" />'
+                }
+            }
+        }
     };
 
-    return gulp.src('./src/views/*.html')
+    return gulp.src('./src/views/*.ejs')
         .pipe(wiredep(wiredepOpts))
         .pipe(inject(injectSrc, injectOpts))
         .pipe(gulp.dest('./src/views/'));
