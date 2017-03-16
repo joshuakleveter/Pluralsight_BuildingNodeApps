@@ -3,6 +3,7 @@ var gulp    = require('gulp');
 var inject  = require('gulp-inject');
 var jscs    = require('gulp-jscs');
 var jshint  = require('gulp-jshint');
+var nodemon = require('gulp-nodemon');
 var wiredep = require('wiredep').stream;
 
 // Set Variables
@@ -25,6 +26,22 @@ gulp.task('inject', function () {
         .pipe(wiredep(wiredepOpts))
         .pipe(inject(injectSrc, injectOpts))
         .pipe(gulp.dest('./src/views/'));
+});
+
+gulp.task('serve', ['style', 'inject'], function () {
+    var options = {
+        script: 'app.js',
+        delayTime: 1,
+        env: {
+            'PORT': 5000
+        },
+        watch: jsFiles
+    };
+
+    return nodemon(options)
+        .on('restart', function (ev) {
+            console.log('restarting nodemon');
+        });
 });
 
 gulp.task('style', function () {
