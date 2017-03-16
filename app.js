@@ -5,6 +5,33 @@ var express = require('express');
 var port = process.env.PORT;
 var app = express();
 
+var books = [
+    {
+        title: 'You Don\'t Know JavaScript',
+        genre: 'Technical',
+        author: 'Kyle Simpson',
+        read: true
+    },
+    {
+        title: 'JavaScript - The Good Parts',
+        genre: 'Technical',
+        author: 'Douglas Crockford',
+        read: false
+    },
+    {
+        title: 'The Sovereignty of God',
+        genre: 'Theology',
+        author: 'A.W. Pink',
+        read: true
+    },
+    {
+        title: 'The Five Points of Calvinism',
+        genre: 'Theology',
+        author: 'Lorainne Boettner',
+        read: true
+    }
+];
+
 var bookRouter = express.Router();
 
 app.set('views', './src/views');
@@ -38,7 +65,20 @@ app.get('/', function (request, response) {
 
 bookRouter.route('/')
     .get(function (request, response) {
-        response.send('Hello Books');
+        response.render('books', {
+            title: 'Hello from Render',
+            nav: [
+                {
+                    Link: '/Books',
+                    Text: 'Books'
+                },
+                {
+                    Link: '/Authors',
+                    Text: 'Authors'
+                }
+            ],
+            books: books
+        });
     });
 
 bookRouter.route('/single')
