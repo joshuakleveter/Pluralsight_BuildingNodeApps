@@ -18,6 +18,8 @@ app.listen(port, function (err) {
 app.use(express.static('public'));
 app.use(express.static('src/views'));
 
+app.use('/Books', bookRouter);
+
 app.get('/', function (request, response) {
     response.render('index', {
         title: 'Hello from Render',
@@ -33,6 +35,13 @@ app.get('/', function (request, response) {
         ]
     });
 });
-app.get('/books', function (request, response) {
-    response.send('Hello Books');
-});
+
+bookRouter.route('/')
+    .get(function (request, response) {
+        response.send('Hello Books');
+    });
+
+bookRouter.route('/single')
+    .get(function (request, response) {
+        response.send('Hello single book');
+    });
