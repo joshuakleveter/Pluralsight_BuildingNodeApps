@@ -17,7 +17,10 @@ app.use(express.static('public'));
 app.use(express.static('src/views'));
 
 app.get('/', function (request, response) {
-    response.send('Hello World');
+    response.render('index', {
+        title: 'Hello from Render',
+        list: ['a', 'b']
+    });
 });
 app.get('/books', function (request, response) {
     response.send('Hello Books');
