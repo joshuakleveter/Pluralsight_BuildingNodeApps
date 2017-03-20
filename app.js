@@ -14,6 +14,16 @@ var nav = [
 // Require modules
 var bookRouter = require('./src/routes/bookRoutes')(nav);
 var express    = require('express');
+var sql        = require('mssql');
+
+// Config
+
+var config = {
+    user: 'USERNAME',
+    password: 'DBPASS',
+    server: 'localhost',
+    database: 'books'
+};
 
 // App code
 var app  = express();
@@ -36,4 +46,3 @@ app.get('/', function (request, response) {
         nav: nav
     });
 });
-
