@@ -19,8 +19,8 @@ var sql        = require('mssql');
 // Config
 
 var config = {
-    user: 'USERNAME',
-    password: 'DBPASS',
+    user: 'books',
+    password: 'BookUser1',
     server: 'localhost',
     database: 'books'
 };
